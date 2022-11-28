@@ -4,6 +4,7 @@ const userRoutes = require('./routes/userRoutes')
 const User = require('./models/User');
 const Message = require('./models/Message')
 const rooms = ['general', 'ClassIT', 'best friend', 'Family'];
+require('dotenv').config();
 const cors = require('cors');
 
 app.use(express.urlencoded({extended: true}));
@@ -14,7 +15,7 @@ app.use('/users', userRoutes)
 require('./connection')
 
 const server = require('http').createServer(app);
-const PORT = 5001;
+const PORT = process.env.PORT || 5000
 const io = require('socket.io')(server, {
   cors: {
     origin: 'http://localhost:3000',
